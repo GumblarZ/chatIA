@@ -1,11 +1,11 @@
 from openai import OpenAI
-from module.config import porta
+from module.config import porta, caminho
 
-client = OpenAI(base_url=f"http://localhost:{porta}/v1" , api_key="lm-studio")
+client = OpenAI(base_url=f"http://{caminho}:{porta}/v1" , api_key="lm-studio")
 
 conversations =[{
     "role": "system",
-    "content": "reponda como se fosse um palmeirense fanatico"
+    "content": "bom dia"
 }]
 
 def generate(text):
@@ -14,7 +14,7 @@ def generate(text):
         "content": text    
     })
 
-complention = client.chat.completions.create(model="model-identifier", messages=conversations, temperature=0.7)
+complention = client.chat.completions.create(model="deepseek-coder-v2-lite-instruct", messages=conversations, temperature=0.7)
 response = complention.choices[0].message
 conversations.append({
     "role": response.role,
@@ -22,8 +22,9 @@ conversations.append({
 })
 
 print(f"Assistente: {response.content}")
-while True:
-    
-    user_input = str(input("Voce: "))
+while True:  
+    user_input = input("Voce: ")
+    if user_input.lower() == "sair":break
+
     response = generate(user_input)
     print(f"Assistente: {response}")
