@@ -3,7 +3,7 @@ from module.config import port, ip
 import module.voice as voice
 
 client = OpenAI(base_url=f"http://{ip}:{port}/v1" , api_key="lm-studio")
-print('Assistente: ola como posso lhe ajudar?')
+voice.speak('Ola como posso lhe ajudar?')
 while True:
     
     question = input('Voce: ')
