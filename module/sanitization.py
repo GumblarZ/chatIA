@@ -2,12 +2,7 @@ from bs4 import BeautifulSoup
 import re
 
 def remove_tag_content(content):
-<<<<<<< Updated upstream:module/sanitization.py
 
-=======
-   
-    # Removendo todas as ocorrências do conteúdo dentro da tag
->>>>>>> Stashed changes:module/tratamento.py
     modified_content = re.sub(r'<([^>]+)>', '', content)
     print(modified_content)
     return modified_content
